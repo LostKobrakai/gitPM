@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+
+var config = require('../config')
+var express = require('express');
+var open = require('open');
+var app = express();
+
+app.get('/', function(req, res){
+	var body = "Hello World";
+	res.setHeader('Content-Type', 'text/plain');
+	res.setHeader('Content-Length', body.length);
+	res.end(body);
+});
+
+app.listen(config.port);
+console.log("Listening on port " + config.port);
+open("http://localhost:" + config.port+"/");
