@@ -6,10 +6,14 @@ var open = require('open');
 var app = express();
 
 app.get('/', function(req, res){
-	var body = "Hello World";
-	res.setHeader('Content-Type', 'text/plain');
-	res.setHeader('Content-Length', body.length);
-	res.end(body);
+	res.render('index.html');
+});
+
+app.register('.html', require('jade'));
+
+app.use(function(err, req, res, next){
+  console.error(err.stack);
+  res.send(500, 'Something broke!');
 });
 
 app.listen(config.port);
